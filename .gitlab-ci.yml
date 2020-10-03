@@ -1,0 +1,12 @@
+deploy:
+ tags:
+  - golang
+  - docker
+ only:
+  - tags
+ script:
+  - export GOROOT='/opt/go'
+  - export PATH="${PATH}:${GOROOT}/bin"
+  - export GOPATH='/opt/.go'
+  - export VERSION=${CI_BUILD_TAG}
+  - make docker
