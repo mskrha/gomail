@@ -66,8 +66,8 @@ func (m *Message) Send(srv string) (err error) {
 
 	var x string
 	t := time.Now()
-	x += fmt.Sprintf("From: <%s>\r\n", m.From)
-	x += fmt.Sprintf("To: <%s>\r\n", m.To)
+	x += fmt.Sprintf("From: %s\r\n", m.From)
+	x += fmt.Sprintf("To: %s\r\n", m.To)
 	x += fmt.Sprintf("Subject: %s\r\n", m.Subject)
 	x += fmt.Sprintf("Date: %s\r\n", t.Format(RFC2822))
 	x += fmt.Sprintf("Message-ID: %d@%s\r\n", t.UnixNano(), host)
