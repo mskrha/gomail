@@ -40,7 +40,11 @@ func main() {
 		return
 	}
 
-	if err := smtp.Send(msg); err != nil {
+	id, err := smtp.Send(msg)
+	if err != nil {
 		fmt.Println(err)
+		return
 	}
+
+	fmt.Printf("Message queued on the SMTP proxy with ID: %s\n", id)
 }
