@@ -1,0 +1,8 @@
+Package: gomail
+Version: INSTALL_VERSION
+Section: custom
+Priority: optional
+Architecture: INSTALL_ARCH
+Installed-Size: INSTALL_SIZE
+Maintainer: Michal Skrha <michal@skrha.cz>
+Description: Very simple replacement of mail command.
