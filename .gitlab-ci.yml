@@ -1,4 +1,8 @@
-deploy:
+stages:
+  - package
+
+docker:
+ stage: package
  tags:
   - golang
   - docker
@@ -9,4 +13,42 @@ deploy:
   - export PATH="${PATH}:${GOROOT}/bin"
   - export GOPATH='/opt/.go'
   - export VERSION=${CI_BUILD_TAG}
+  - cd source
   - make docker
+
+amd64:
+ stage: package
+ tags:
+  - golang
+  - debian
+ only:
+  - tags
+ script:
+  - export GOROOT='/opt/go'
+  - export PATH="${PATH}:${GOROOT}/bin"
+  - export GOPATH='/opt/.go'
+  - export VERSION=${CI_BUILD_TAG}
+  - export ARCH=amd64
+  - export PKG=gomail_${VERSION}_${ARCH}
+  - cd source
+  - make deb
+  - /usr/sbin/reprepro-uploader ${PKG}.deb jessie stretch buster bullseye
+  - rm -fv ${PKG}.deb
+
+armhf:
+ stage: package
+ tags:
+  - golang
+  - debian
+ only:
+  - tags
+ script:
+  - export GOROOT='/opt/go'
+  - export PATH="${PATH}:${GOROOT}/bin"
+  - export GOPATH='/opt/.go'
+  - export VERSION=${CI_BUILD_TAG}
+  - export ARCH=armhf
+  - cd source
+  - make deb
+  - /usr/sbin/reprepro-uploader ${PKG}.deb jessie stretch buster bullseye
+  - rm -fv ${PKG}.deb
