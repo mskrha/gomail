@@ -48,6 +48,7 @@ armhf:
   - export GOPATH='/opt/.go'
   - export VERSION=${CI_BUILD_TAG}
   - export ARCH=armhf
+  - export PKG=gomail_${VERSION}_${ARCH}
   - cd source
   - make deb
   - /usr/sbin/reprepro-uploader ${PKG}.deb jessie stretch buster bullseye
