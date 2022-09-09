@@ -38,7 +38,7 @@ deb: files build-$(ARCH)
 	dpkg-deb --build $(TMPDIR) $(PKG).deb
 	rm -rf $(TMPDIR)
 
-docker: clean format build
+docker: clean format build-amd64
 	docker build --compress --tag $(REGISTRY)/$(BUILD):$(VERSION) --tag $(REGISTRY)/$(BUILD):latest .
 	docker push $(REGISTRY)/$(BUILD):$(VERSION)
 	docker push $(REGISTRY)/$(BUILD):latest
