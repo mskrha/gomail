@@ -1,6 +1,6 @@
 BUILD		= gomail
 VERSION		?= 0.0
-REGISTRY	= 'registry.docker.srv.sobotiste.info'
+REGISTRY	= 'registry.docker.srv.skrha.cz'
 ARCH		?= amd64
 PKG		?= $(BUILD)_$(VERSION)_$(ARCH)
 OUTPUT		= $(BUILD)
